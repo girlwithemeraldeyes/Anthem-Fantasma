@@ -71,4 +71,7 @@ ________________________________________________________
 - Ordenar resultados por campo: http://localhost:3000/trafico?sort=-fecha o http://localhost:3000/trafico?sort=intensidad (NO FUNCIONA)
 - Combinación completa de filtros: http://localhost:3000/trafico?idelem=1001&tipo_elem=M30&intensidad_min=300&desde=2051-01-01&hasta=2051-01-02&sort=-fecha&limit=100 (NO ESTOY SEGURA DE SI FUNCIONA BIEN)
 
-2. 
+2. Optimizar la gestión de residuos
+
+CSV CONTENEDORES 
+________________

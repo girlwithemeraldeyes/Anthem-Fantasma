@@ -185,7 +185,7 @@ router.patch("/:idelem", tokenVerify, function (req, res) {
     return res.status(400).json({ mensaje: "No hay campos para actualizar" });
   }
 
-  // ojo: aquí actualizamos por _id, si quieres por idelem habría que cambiarlo
+
   TrafficReading.findByIdAndUpdate(
     req.params.idelem,
     { $set: update },

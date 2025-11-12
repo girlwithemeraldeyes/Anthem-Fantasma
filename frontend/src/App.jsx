@@ -3,6 +3,7 @@ import PaginaIniciarSesion from './paginas/PaginaIniciarSesion.jsx';
 import PaginaInicio from './paginas/PaginaInicio.jsx';
 import { AuthProvider } from './AuthContext.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
+import ContenedorCercano from './paginas/ContenedorCercano.jsx';
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/iniciar-sesion" element={<PaginaIniciarSesion />} />
+
           <Route
             path="/inicio"
             element={
@@ -18,6 +20,17 @@ export default function App() {
               </ProtectedRoute>
             }
           />
+
+          {/* Módulo de residuos */}
+          <Route
+            path="/residuos"
+            element={
+              <ProtectedRoute>
+                <ContenedorCercano />
+              </ProtectedRoute>
+            }
+          />
+
           <Route path="/" element={<Navigate to="/iniciar-sesion" />} />
         </Routes>
       </BrowserRouter>

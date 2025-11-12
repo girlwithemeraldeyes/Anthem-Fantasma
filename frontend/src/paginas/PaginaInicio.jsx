@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../AuthContext.jsx';
 import { apiSecure } from '../api.jsx';
 import styles from './PaginaInicio.module.css';
@@ -24,7 +25,15 @@ export default function PaginaInicio() {
     <div className={styles.container}>
       <div className={styles.header}>
         <h1 className={styles.title}>Página de inicio</h1>
-        <button className={styles.logoutBtn} onClick={logout}>Cerrar sesión</button>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          {/* Acceso al módulo de residuos */}
+          <Link to="/residuos" className={styles.logoutBtn}>
+            Ver contenedor más cercano
+          </Link>
+          <button className={styles.logoutBtn} onClick={logout}>
+            Cerrar sesión
+          </button>
+        </div>
       </div>
 
       {error && <div className={styles.error}>{error}</div>}

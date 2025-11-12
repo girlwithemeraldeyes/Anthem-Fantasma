@@ -7,6 +7,7 @@ npm install core-js@2 --save (NO HACE FALTA QUE LO INSTALES PORQUE LO HE HECHO P
 SOLUCIONAR EL PROBLEMA CON NODE MODULES).
 npm install reactstrap bootstrap
 npm i cors
+npm i proj4
 _ _ _ _ _ _ _ _ _ 
 # 1) Crear la carpeta del frontend (/frontend) con su propio package.json de Vite
 npm create vite@latest frontend -- --template react
@@ -50,5 +51,15 @@ POST http://localhost:3000/usuarios/signin (login)
 
 DESDE NAVEGADOR - INICIO DE SESIÓN
 __________________________________
+
 http://localhost:5173/iniciar-sesion
 
+En el frontend instalar: npm i leaflet react-leaflet
+
+EN CASO DE QUE FALLE VITE DE REPENTE
+____________________________________
+
+En caso de que pete Vite a mí me ha funcionado:
+
+rm -r -Force node_modules
+rm -Force package-lock.json
