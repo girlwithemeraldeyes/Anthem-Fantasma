@@ -1,6 +1,7 @@
 var express = require("express");
 var mongoose = require("mongoose");
 var jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs"); 
 var router = express.Router();
 
 const dotenv = require('dotenv');
@@ -134,48 +135,35 @@ router.delete("/:id", async function (req, res) {
 });
 
 // Login y generación de token
-router.post(
-    "/signin",
-    function (req, res, next) {
-        debug("login");
-        // Aquí sigo con callback porque el modelo puede tener comparePassword definido así
-        User.findOne({ username: req.body.username }, function (err, user) {
-            if (err) {
-                return res.status(500).send("Error comprobando el usuario");
-            }
-            if (user != null) {
-                debug("El usuario existe");
-                user.comparePassword(req.body.password, function (err, isMatch) {
-                    if (err) return res.status(500).send("Error comprobando el password");
-                    if (isMatch) {
-                        return next(); // pasamos a generar el token
-                    } else {
-                        return res.status(401).send({
-                            message: "Password no coincide"
-                        });
-                    }
-                });
-            } else {
-                return res.status(401).send({
-                    message: "Usuario no existe"
-                });
-            }
-        });
-    },
-    function (req, res) {
-        debug("... generando token");
-        jwt.sign(
-            { username: req.body.username },
-            process.env.TOKEN_SECRET,
-            { expiresIn: 3600 },
-            function (err, generatedToken) {
-                if (err) return res.status(500).send("Error generando token de autenticación");
-                return res.status(200).send({
-                    message: generatedToken
-                });
-            }
-        );
+// Login y generación de token  (SIN callbacks, usando async/await)
+router.post("/signin", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+
+    // 1) buscar usuario
+    const user = await User.findOne({ username }).exec();
+    if (!user) {
+      return res.status(401).send({ message: "Usuario no existe" });
     }
-);
+
+    // 2) comparar password (hash)
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).send({ message: "Password no coincide" });
+    }
+
+    // 3) generar token
+    const token = jwt.sign(
+      { id: user._id, username: user.username },
+      process.env.TOKEN_SECRET,
+      { expiresIn: 3600 }
+    );
+
+    return res.status(200).send({ message: token });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).send("Error en login");
+  }
+});
 
 module.exports = router;

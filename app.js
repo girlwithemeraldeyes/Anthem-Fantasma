@@ -7,6 +7,7 @@ var logger = require('morgan');
 var debug = require('debug')('anthem:server');
 var mongoose = require('mongoose');
 require('dotenv').config();
+const cors = require('cors');
 
 // Importamos las rutas API
 var usersRouter = require('./routes/usuarios');
@@ -20,6 +21,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors({ origin: 'http://localhost:5173' }));
 
 // Conexión a MongoDB
 const MONGODB_CLUSTER_URI = process.env.MONGODB_CLUSTER_URI;

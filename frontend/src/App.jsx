@@ -1,35 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.jsx
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import PaginaIniciarSesion from './paginas/PaginaIniciarSesion.jsx';
+import PaginaInicio from './paginas/PaginaInicio.jsx';
+import { AuthProvider } from './AuthContext.jsx';
+import ProtectedRoute from './ProtectedRoute.jsx';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <BrowserRouter>
+      <AuthProvider>
+        <Routes>
+          <Route path="/iniciar-sesion" element={<PaginaIniciarSesion />} />
+          {/* Todo lo que cuelgue de ProtectedRoute requiere token */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="/inicio" element={<PaginaInicio />} />
+          </Route>
+          <Route path="/" element={<Navigate to="/iniciar-sesion" />} />
+        </Routes>
+      </AuthProvider>
+    </BrowserRouter>
+  );
 }
-
-export default App

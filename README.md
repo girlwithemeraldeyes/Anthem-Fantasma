@@ -6,7 +6,7 @@ npm install bcryptjs
 npm install core-js@2 --save (NO HACE FALTA QUE LO INSTALES PORQUE LO HE HECHO PARA 
 SOLUCIONAR EL PROBLEMA CON NODE MODULES).
 npm install reactstrap bootstrap
-
+npm i cors
 _ _ _ _ _ _ _ _ _ 
 # 1) Crear la carpeta del frontend (/frontend) con su propio package.json de Vite
 npm create vite@latest frontend -- --template react
@@ -34,3 +34,16 @@ En Powershell para ejecutar el proyecto (si se logra ejecutar esto es porque se 
 $env:NODE_ENV="production"; npm start
 
 
+POSTMAN
+_______
+
+Para ver si funciona la autenticación hacer lo siguiente: 
+POST http://localhost:3000/usuarios (crear)
+{ "username":"admin", "password":"admin", "fullname":"Admin", "email":"a@a.com" }
+
+POST http://localhost:3000/usuarios/signin (login)
+{ "username":"admin", "password":"admin" }
+
+DESDE NAVEGADOR - INICIO DE SESIÓN
+__________________________________
+http://localhost:5173/iniciar-sesion
