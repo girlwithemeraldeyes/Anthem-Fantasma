@@ -30,8 +30,12 @@ npm start       # o "node ./bin/www" si ese es tu script
 cd frontend
 npm run dev     # abrir http://localhost:5173
 
-En Powershell para ejecutar el proyecto (si se logra ejecutar esto es porque se ha logrado conectar el frontend al backend):
-$env:NODE_ENV="production"; npm start
+
+EJECUTAR PROYECTO
+_________________
+
+backend (terminal 1): npm start
+forntend(terminal 2): npm run dev
 
 
 POSTMAN
@@ -47,3 +51,4 @@ POST http://localhost:3000/usuarios/signin (login)
 DESDE NAVEGADOR - INICIO DE SESIÓN
 __________________________________
 http://localhost:5173/iniciar-sesion
+

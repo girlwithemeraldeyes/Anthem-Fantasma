@@ -1,0 +1,62 @@
+/* === Estilos para la página de login === */
+
+.wrapper {
+  max-width: 420px;
+  margin: 80px auto;
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 2rem;
+  color: #213547;
+}
+
+.formGroup {
+  margin-bottom: 16px;
+}
+
+.label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+  color: #333;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.button {
+  width: 100%;
+  padding: 10px;
+  background-color: #646cff;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #535bf2;
+}
+
+.error {
+  background-color: #ffe5e5;
+  color: #c00;
+  padding: 8px 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: 500;
+}

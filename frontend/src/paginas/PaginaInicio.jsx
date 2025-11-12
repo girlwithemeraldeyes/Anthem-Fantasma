@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../AuthContext.jsx';
 import { apiSecure } from '../api.jsx';
+import styles from './PaginaInicio.module.css';
 
 export default function PaginaInicio() {
   const { token, logout } = useAuth();
@@ -10,31 +11,29 @@ export default function PaginaInicio() {
   useEffect(() => {
     (async () => {
       try {
-        const data = await apiSecure('/secure', token); // GET /usuarios/secure
+        const data = await apiSecure('/secure', token);
         setUsuarios(data);
       } catch (err) {
-        if (err.status === 401) {
-          // token expirado/invalidado
-          logout();
-        } else {
-          setError('Error cargando usuarios');
-        }
+        if (err.status === 401) logout();
+        else setError('Error cargando usuarios');
       }
     })();
   }, [token, logout]);
 
   return (
-    <div style={{ padding: 24 }}>
-      <div className="d-flex justify-content-between align-items-center">
-        <h1>Página de inicio</h1>
-        <button className="btn btn-outline-secondary" onClick={logout}>Cerrar sesión</button>
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <h1 className={styles.title}>Página de inicio</h1>
+        <button className={styles.logoutBtn} onClick={logout}>Cerrar sesión</button>
       </div>
 
-      {error && <div className="alert alert-danger mt-3">{error}</div>}
+      {error && <div className={styles.error}>{error}</div>}
 
-      <ul className="mt-3">
+      <ul className={styles.userList}>
         {usuarios.map(u => (
-          <li key={u._id}>{u.username} · {u.email}</li>
+          <li key={u._id} className={styles.userItem}>
+            {u.username} · {u.email}
+          </li>
         ))}
       </ul>
     </div>

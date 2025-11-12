@@ -1,0 +1,56 @@
+/* === Estilos para la página principal === */
+
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 2rem;
+  color: #213547;
+}
+
+.logoutBtn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #f44336;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.logoutBtn:hover {
+  background-color: #d32f2f;
+}
+
+.userList {
+  list-style: none;
+  padding: 0;
+}
+
+.userItem {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.error {
+  background-color: #ffe5e5;
+  color: #c00;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  text-align: center;
+}
