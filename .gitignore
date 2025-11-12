@@ -1,0 +1,11 @@
+# Ignorar datasets grandes
+datos_hpe/
+
+# Ignorar archivos de entorno (contienen contraseñas o claves)
+.env
+
+# Ignorar archivo de node modules
+node_modules/
+
+# Ignorar bin
+bin/
